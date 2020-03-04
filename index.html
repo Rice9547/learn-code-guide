@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hide {
+            display: none;
+        }
+
+        body {
+            background-color: #292a2d;
+            color: #a9a9b3;
+        }
+
+        header {
+            padding: 60px;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .questions {
+            text-align: center;
+            font-size: 30px;
+            padding: 40px;
+        }
+
+        .topic {}
+
+        .answer {}
+
+        li {
+            list-style-type: none;
+        }
+
+        li,
+        button {
+            background-color: #555555;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            margin: 10px;
+            text-align: center;
+            display: inline-block;
+            font-size: 25px;
+        }
+
+        a,
+        a:visited {
+            text-decoration: none;
+            color: white;
+        }
+
+        li:hover,
+        button:hover {
+            transform: scale(1.05);
+        }
+    </style>
+    <script>
+        function bindEvent(id) {
+            let dom = document.getElementById(id),
+                elements = dom.children[1].children;
+            dom.classList.remove('hide');
+            for (let element of elements) {
+                if (!element.dataset.target) {
+                    continue;
+                }
+                element.addEventListener('click', () => {
+                    dom.classList.add('hide');
+                    goNext(element.dataset.target);
+                }, false);
+            }
+        }
+        function goNext(id) {
+            bindEvent(id);
+        }
+        window.onload = () => {
+            let ques = document.getElementsByClassName('question');
+            for (let ele of ques) {
+                ele.classList.add('hide');
+            }
+            bindEvent('q1');
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>中山大學程式研習社 自學推薦</h1>
+        <p>歡迎加入更多想法，否則內容會很個人主觀</p>
+    </header>
+    <div class="questions">
+        <div class="question" id="q1">
+            <div class="topic">你想學習哪一組?</div>
+            <div class="answer">
+                <button data-target="q2">程式競賽</button>
+                <button data-target="q6">專案製作</button>
+            </div>
+        </div>
+        <div class="question" id="q2">
+            <div class="topic">你會寫程式嗎?</div>
+            <div class="answer">
+                <button data-target="q3">會</button>
+                <button data-target="q4">不會</button>
+            </div>
+        </div>
+        <div class="question" id="q3">
+            <div class="topic">你在 CPE 可以拿到幾題(非假解的最高題數，可以自行在寫考古並計時)?</div>
+            <div class="answer">
+                <button data-target="q4">0~3題</button>
+                <button data-target="q5">4~7題</button>
+            </div>
+        </div>
+        <div class="question" id="q4">
+            <div class="topic">建議你可以先學習並穩固基礎的程式語言</div>
+            <ul class="answer">
+                <li>C++(推薦)</li>
+                <li>Python3(可選，較不推薦)</li>
+                <li data-target="q2-final">其他資源</li>
+            </ul>
+        </div>
+        <div class="question" id="q5">
+            <div class="topic">建議你可以學習資料結構及演算法</div>
+            <ul class="answer">
+                <li><a href="http://www.csie.ntnu.edu.tw/~u91029/">演算法筆記</a></li>
+                <li><a href="https://tioj.ck.tp.edu.tw/articles/11">建中資訊校內培訓講義</a></li>
+                <li><a href="https://www.books.com.tw/products/0010705139">培養與鍛鍊程式設計的邏輯腦</a></li>
+                <li><a href="https://www.books.com.tw/products/0010650143">程式設計與演算法競賽入門經典</a></li>
+                <li data-target="q2-final">練習資源</li>
+            </ul>
+        </div>
+        <div class="question" id="q2-final">
+            <div class="topic">以下為推薦的解題練習網站</div>
+            <ul class="answer">
+                <li><a href="http://codeforces.com/">Codeforces</a></li>
+                <li><a href="https://atcoder.jp/">AtCoder</a></li>
+                <li><a href="https://onlinejudge.org/">UVA</a></li>
+                <li><a href="https://www.hackerrank.com/">Hackerrank</a></li>
+                <li><a href="https://tioj.ck.tp.edu.tw/">TIOJ(題目水準較高，但無法練習閱讀英文題目)</a></li>
+                <li><a href="https://leetcode.com/">Leetcode(題目大多太過直覺，建議當作測試一個新東西使用)</a></li>
+                <li><a href="https://zerojudge.tw/">Zerojudge(題目水平參差不齊，不太推薦)</a></li>
+                <li data-target="q1">回到第一題</li>
+            </ul>
+        </div>
+        <div class="question" id="q6">
+            <div class="topic">你對於以下領域何者較有興趣(不論是對哪個有興趣，建議都學一下 GIT 比較好哦！)</div>
+            <div class="answer">
+                <button data-target="q7">寫 APP 前端(看的到部分)</button>
+                <button data-target="q11">寫網頁前端(看的到部分)</button>
+                <button data-target="q14">做 APP 或網頁後端(看不到的地方做的事情)</button>
+                <button data-target="todo">遊戲設計</button>
+                <button data-target="todo">資料分析</button>
+                <button data-target="todo">人工智慧</button>
+                <button data-target="todo">區塊鏈</button>
+                <button data-target="todo">資訊安全</button>
+                <button data-target="q6-other">其他</button>
+            </div>
+        </div>
+        <div class="question" id="q7">
+            <div class="topic">你希望寫的程式可以在哪個平台執行?</div>
+            <div class="answer">
+                <button data-target="q8">Android</button>
+                <button data-target="q9">iOS</button>
+                <button data-target="q10">我全都要</button>
+            </div>
+        </div>
+        <div class="question" id="q8">
+            <div class="topic">以下為推薦的程式語言</div>
+            <ul class="answer">
+                <li><a href="https://kotlinlang.org/">Kotlin</a></li>
+                <li><a href="https://developer.android.com/training/basics/firstapp">JAVA</a></li>
+                <li data-target="q1">回到第一題</li>
+            </ul>
+        </div>
+        <div class="question" id="q9">
+            <div class="topic">以下為推薦的程式語言(首先，你需要一台蘋果電腦)</div>
+            <ul class="answer">
+                <li><a href="https://developer.apple.com/swift/">Swift</a></li>
+                <li><a>Objective-C</a></li>
+                <li data-target="q1">回到第一題</li>
+            </ul>
+        </div>
+        <div class="question" id="q10">
+            <div class="topic">以下為推薦的程式語言(若想在 iOS 上執行，你需要一台蘋果電腦)</div>
+            <ul class="answer">
+                <li><a href="https://flutter.dev/">Flutter</a></li>
+                <li><a href="https://reactnative.dev/">React-Native</a></li>
+                <li><a href="https://dotnet.microsoft.com/apps/xamarin/">Xamarn</a></li>
+                <li>即使你透過這些語言撰寫跨平台的 APP，專精後依然需要學習原生平台的程式語言</li>
+                <li data-target="q1">回到第一題</li>
+            </ul>
+        </div>
+        <div class="question" id="q11">
+            <div class="topic">你是否已經學習過網頁設計?</div>
+            <div class="answer">
+                <button data-target="q12">是</button>
+                <button data-target="q13">否</button>
+            </div>
+        </div>
+        <div class="question" id="q12">
+            <div class="topic">以下為必學的網頁技能</div>
+            <ul class="answer">
+                <li><a href="https://www.w3schools.com/html">HTML</a></li>
+                <li><a href="https://www.w3schools.com/css">CSS</a></li>
+                <li><a href="https://www.w3schools.com/js">JavaScript</a></li>
+                <li data-target="q1">回到第一題</li>
+            </ul>
+        </div>
+        <div class="question" id="q13">
+            <div class="topic">以下為可以考慮的學習關鍵字</div>
+            <ul class="answer">
+                <li>有點過時但堪用的技術: Bootstrap, jQuery</li>
+                <li>近年常用 JS Library: Vue, Angular, React</li>
+                <li data-target="q1">回到第一題</li>
+            </ul>
+        </div>
+        <div class="question" id="q14">
+            <div class="topic">你對哪個語言比較有興趣?</div>
+            <div class="answer">
+                <button data-target="q15">Node.js (JavaScript)</button>
+                <button data-target="q16">Python</button>
+                <button data-target="q17">PHP</button>
+                <button data-target="q18">Go</button>
+                <button data-target="q18">Java</button>
+                <button data-target="q18">C#</button>
+                <button data-target="q1">其他我也不知道了QQ 回到第一頁</button>
+            </div>
+        </div>
+        <div class="question" id="q15">
+            <div class="topic">以下為可以考慮的框架</div>
+            <ul class="answer">
+                <li><a href="https://nodejs.org/">純 node.js</a></li>
+                <li><a href="https://expressjs.com/">Express</a></li>
+                <li><a href="https://koajs.com/">Kao</a></li>
+                <li><a href="https://sailsjs.com/">Sails</a></li>
+                <li data-target="q1">回到第一題</li>
+            </ul>
+        </div>
+        <div class="question" id="q16">
+            <div class="topic">以下為可以考慮的框架</div>
+            <ul class="answer">
+                <li><a href="https://www.djangoproject.com/">Django</a></li>
+                <li><a href="https://palletsprojects.com/p/flask/">Flask</a></li>
+                <li><a href="https://www.tornadoweb.org/en/stable/">Tornado</a></li>
+                <li data-target="q1">回到第一題</li>
+            </ul>
+        </div>
+        <div class="question" id="q17">
+            <div class="topic">以下為可以考慮的框架</div>
+            <ul class="answer">
+                <li><a href="https://laravel.com/">Laravel</a></li>
+                <li><a href="https://lumen.laravel.com/">Lumen</a></li>
+                <li><a href="https://phalcon.io/en-us">Phalcon</a></li>
+                <li><a href="https://symfony.com/">Symfony</a></li>
+                <li>其他大多是基於這些變形的，在此不贅述w</li>
+                <li data-target="q1">回到第一題</li>
+            </ul>
+        </div>
+        <div class="question" id="q18">
+            <div class="topic">直接學習你選擇的語言吧！這些我不熟，有框架的話可以幫忙補充一下</div>
+            <ul class="answer">
+                <li data-target="q1">回到第一題</li>
+            </ul>
+        </div>
+        <div class="question" id="todo">
+            <div class="topic">我要睡覺了，未來再做QQ</div>
+            <div class="answer">
+                <div>也許你可以發個 PR</div>
+                <button data-target="q1">回到第一題</button>
+            </div>
+        </div>
+        <div class="question" id="q6-other">
+            <div class="topic">目前沒有相關建議QQ</div>
+            <div class="answer">
+                <div>也許你可以增加相關建議</div>
+                <button data-target="q1">回到第一題</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
